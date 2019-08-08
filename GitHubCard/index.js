@@ -123,7 +123,7 @@ function createCards(object){
   followers.textContent = "Followers: " + object.followers;
 
   cardInfo.appendChild(following);
-  following.textContent = "Following: " + object.followers;
+  following.textContent = "Following: " + object.following;
 
   // card.appendChild(bio);
 
@@ -145,12 +145,15 @@ function createCards(object){
 
 
 followersArray.forEach(items => {
-  axios.get(URL/${items});
+  axios.get(`https://api.github.com/users/${items}`)
   .then((response) => {
     const info = response.data;
     const newCard = createCards(info);
-    info.appendChild(newCard);
+    // info.appendChild(newCard);
+    // const = document.querySelector('.cards');
+    cards.appendChild(newCard);
   })
+})
 //   const newCard = document.createElement('div');
 //   newCard.textContent = items;
 //   card.appendChild(newCard);
