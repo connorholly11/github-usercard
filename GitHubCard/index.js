@@ -2,19 +2,20 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
+// var url = 'https://api.github.com/users/connorholly11';
 
-axios.get('https://api.github.com/users/connorholly11')
-  .then((response) => {
-    console.log(response)
+// axios.get('https://api.github.com/users/connorholly11')
+//   .then((response) => {
+//     // createCards(response.data))
+//   console.log(response);
+//   })
 
-    response.data.message.forEach ( item => {
-      let newPerson = userCard(item);
-      entrypoint.appendChild(newPerson);
-    })
-})
-    .catch((err) => {
-      console.log(err)
-  })
+  axios.get('https://api.github.com/users/connorholly11')
+  .then((response) => createCards(response.data))
+
+
+  // .then(alert('hello'))
+    // .catch((err) => console.log(err))
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -63,19 +64,71 @@ const followersArray = [];
 
 const card = document.querySelector('.cards')
 
-function createCards(){
-  const card1 = document.createElement('div');
+function createCards(object){
+  //creating elements
+  
+  const card = document.createElement('div');
   const img = document.createElement('img');
   const cardInfo = document.createElement('div');
-  const name = document.createElement('h3');
+  // const name = document.createElement('h3');
   const username = document.createElement('p');
-  const location = document.createElement('p');
-  const profile = document.createElement('p');
-  const LinkGithub = document.createElement('a');
+  // const location = document.createElement('p');
+  // const profile = document.createElement('p');
+  // const LinkGithub = document.createElement('a');
   const followers = document.createElement('p');
   const following = document.createElement('p');
-  const bio = document.createElement('p');
+  // const bio = document.createElement('p');
+
+  //creating structure
+  card.appendChild(img);
+  img.src = object.avatar.url;
+
+  card.appendChild(cardInfo);
+
+  // card.appendChild(name);
+
+  card.appendChild(username);
+  username.textContent = object.login;
+  // card.appendChild(location);
+
+  // card.appendChild(profile);
+
+
+  // card.appendChild(LinkGithub);
+
+  card.appendChild(followers);
+  followers.textContent = object.followers_url;
+
+  card.appendChild(following);
+  following.textContent = object.followers_url;
+
+  // card.appendChild(bio);
+
+  // //set class names
+  // card.classList.add('cards');
+  // img.classList.add('img');
+  // cardInfo.classList.add('card');
+  // // name.classList.add('name');
+  // username.classList.add('username');
+
+  // const cardContainer = document.querySelector('cards');
+  // cardContainer.appendChild(card);
+
+  
+
+  //set the content of the text
+
+  // img.src = object.avatar_url;
+  // username = object.login;
+  // user = object.user;
+  // followers = object.followers_url;
+  // following = object.following_url;
+
+  return card;
 }
+
+
+
 
 /* List of LS Instructors Github username's: 
   tetondan
