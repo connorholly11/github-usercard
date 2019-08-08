@@ -11,7 +11,12 @@
 //   })
 
   axios.get('https://api.github.com/users/connorholly11')
-  .then((response) => createCards(response.data))
+  // .then((response) => createCards(response.data))
+  .then((response) => {
+    const myInfo = response.data;
+    const card = createCards(myInfo);
+    cards.appendChild(card);
+  })
 
 
   // .then(alert('hello'))
@@ -29,6 +34,8 @@
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
 */
+const cards = document.querySelector('.cards');
+// cards.appendChild(card);
 
 
 
@@ -72,7 +79,7 @@ function createCards(object){
   const card = document.createElement('div');
   const img = document.createElement('img');
   const cardInfo = document.createElement('div');
-  // const name = document.createElement('h3');
+  const name = document.createElement('h3');
   const username = document.createElement('p');
   // const location = document.createElement('p');
   // const profile = document.createElement('p');
@@ -87,9 +94,10 @@ function createCards(object){
 
   card.appendChild(cardInfo);
 
-  // card.appendChild(name);
+  cardInfo.appendChild(name);
+  name.textContent = object.name;
 
-  card.appendChild(username);
+  cardInfo.appendChild(username);
   username.textContent = object.login;
   // card.appendChild(location);
 
@@ -98,33 +106,26 @@ function createCards(object){
 
   // card.appendChild(LinkGithub);
 
-  card.appendChild(followers);
-  followers.textContent = object.followers_url;
+  cardInfo.appendChild(followers);
+  followers.textContent = "Followers: " + object.followers;
 
-  card.appendChild(following);
-  following.textContent = object.followers_url;
+  cardInfo.appendChild(following);
+  following.textContent = "Following: " + object.followers;
 
   // card.appendChild(bio);
 
-  // //set class names
-  // card.classList.add('cards');
-  // img.classList.add('img');
-  // cardInfo.classList.add('card');
-  // // name.classList.add('name');
-  // username.classList.add('username');
+  //set class names
+  card.classList.add('card');
+  img.classList.add('img');
+  cardInfo.classList.add('card-info');
+  name.classList.add('name');
+  username.classList.add('username');
 
   // const cardContainer = document.querySelector('cards');
   // cardContainer.appendChild(card);
 
   
 
-  //set the content of the text
-
-  // img.src = object.avatar_url;
-  // username = object.login;
-  // user = object.user;
-  // followers = object.followers_url;
-  // following = object.following_url;
 
   return card;
 }
