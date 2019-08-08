@@ -47,9 +47,22 @@ const cards = document.querySelector('.cards');
           
           Using that array, iterate over it, requesting data for each user, creating a new card for each
           user, and adding that card to the DOM.
+          
+  tetondan
+  dustinmyers
+  justsml
+  luishrd
+  bigknell
 */
 
-const followersArray = [];
+const followersArray = ["tetondan", "dustinmyers", "justsml", "luishrd", "bigknell"];
+
+// followersArray.forEach(items => {
+//   const newCard = document.createElement('div');
+//   newCard.textContent = followersArray;
+//   card.appendChild(newCard);
+// })
+
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:*/
@@ -131,7 +144,23 @@ function createCards(object){
 }
 
 
+followersArray.forEach(items => {
+  axios.get(URL/${items});
+  .then((response) => {
+    const info = response.data;
+    const newCard = createCards(info);
+    info.appendChild(newCard);
+  })
+//   const newCard = document.createElement('div');
+//   newCard.textContent = items;
+//   card.appendChild(newCard);
+// })
 
+// .then((response) => {
+//   const myInfo = response.data;
+//   const card = createCards(myInfo);
+//   cards.appendChild(card);
+// })
 
 /* List of LS Instructors Github username's: 
   tetondan
